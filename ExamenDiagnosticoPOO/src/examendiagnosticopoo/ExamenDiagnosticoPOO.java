@@ -8,6 +8,7 @@ public class ExamenDiagnosticoPOO {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         int numero, residuo, i, bandera;
         numero = Integer.parseInt(JOptionPane.showInputDialog("Ingresa cualquier numero entero diferente de 1"));
 
