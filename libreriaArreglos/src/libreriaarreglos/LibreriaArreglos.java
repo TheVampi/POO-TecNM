@@ -229,6 +229,22 @@ class Matrices {
         }
 
     }
+    
+    //Metodo para multiplicar matrices
+    void multiplicarMatriz(int [][] PrimerMatriz, int [][] SegundaMatriz, int [][] matrizResultante){
+        /*Criterios para la multiplicacion de matrices:
+            1. Dadas 2 matrices para multiplicar, se va a obtener una nueva matriz resultante
+            2. Las FILAS DE LA SEGUNDA matriz debe ser del MISMO ORDEN DE LA COLUMNA DE LA PRIMERA, si no se cumple este requisito, no se puede realizar la operacion
+            3. Las FILAS DE LA MATRIZ RESULTANTE debe tener el MISMO ORDEN DE FILAS de la PRIMER MATRIZ
+            4. Las COLUMNAS DE LA MATRIZ RESULTANTE debe tener el MISMO ORDEN DE COLUMNAS DE LA SEGUNDA MATRIZ
+        */
+        if (PrimerMatriz[0].length==SegundaMatriz.length){
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Las operaciones no pueden realizarse, la primer matriz tiene "+PrimerMatriz[0].length+" columnas, y la segunda matriz tiene "+SegundaMatriz.length+" filas, no son iguales unu");
+        }
+    }
 
     //Metodo para obtener una matriz transpuesta (Los renglones pasan a columnas y las columnas a renglones)
     int[][] obtenerMatrizTranspuesta(int[][] matrizAConvertir) {
