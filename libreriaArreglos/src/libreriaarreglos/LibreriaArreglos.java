@@ -1,10 +1,9 @@
-
 package libreriaarreglos;
 
 import javax.swing.JOptionPane;
 
 
-    /*⠄⠄⠄⢰⣧⣼⣯⠄⣸⣠⣶⣶⣦⣾⠄⠄⠄⠄⡀⠄⢀⣿⣿⠄⠄⠄⢸⡇⠄⠄
+/*⠄⠄⠄⢰⣧⣼⣯⠄⣸⣠⣶⣶⣦⣾⠄⠄⠄⠄⡀⠄⢀⣿⣿⠄⠄⠄⢸⡇⠄⠄
 ⠄⠄⠄⣾⣿⠿⠿⠶⠿⢿⣿⣿⣿⣿⣦⣤⣄⢀⡅⢠⣾⣛⡉⠄⠄⠄⠸⢀⣿⠄
 ⠄⠄⢀⡋⣡⣴⣶⣶⡀⠄⠄⠙⢿⣿⣿⣿⣿⣿⣴⣿⣿⣿⢃⣤⣄⣀⣥⣿⣿⠄
 ⠄⠄⢸⣇⠻⣿⣿⣿⣧⣀⢀⣠⡌⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠿⣿⣿⣿⠄
@@ -53,14 +52,14 @@ import javax.swing.JOptionPane;
 ⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⢐⣿⣿⣿⣿⣿⣿⣿⣿⣿
 ⣿⣿⣿⣿⠿⠛⠉⠉⠁⠀⢻⣿⡇⠀⠀⠀⠀⠀⠀⢀⠈⣿⣿⡿⠉⠛⠛⠛⠉⠉
 ⣿⡿⠋⠁⠀⠀⢀⣀⣠⡴⣸⣿⣇⡄⠀⠀⠀⠀⢀⡿⠄⠙⠛⠀⣀⣠⣤⣤⠄⠀      
-     */
+ */
 public class LibreriaArreglos {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         //AQUI VAMOS A PROBAR CADA FUNCION UWU
         Matrices objeto1 = new Matrices();
         /*JOptionPane.showMessageDialog(null, "Bienvenido a la calculadora de matrices, vamos a crear la primer matriz");
@@ -84,9 +83,14 @@ public class LibreriaArreglos {
 
         //Calculando la RESTA de la SEGUNDA menos la PRIMERA
         int[][] matriz5 = new int[matriz1.length][matriz1[0].length];
-        objeto1.restarMatriz(matriz2, matriz1, matriz5);
+        objeto1.restarMatriz(matriz2, matriz1, matriz5);*/
 
-        //Creando una matriz para rellenar con multiplos de 3
+        //Calculando la suma de cada renglon y mostrandola al final de cada columna de cada renglon
+        int[][] matriz9;
+        matriz9 = objeto1.leerMatrizYLlenarRandom();
+        JOptionPane.showMessageDialog(null, objeto1.sumarYMostrarRenglones(matriz9));
+
+        /*//Creando una matriz para rellenar con multiplos de 3
         int[][] matrizMultiplosDe3;
         matrizMultiplosDe3 = objeto1.asignarDimensionesAArreglo();
         matrizMultiplosDe3 = objeto1.llenarMatrizEsquinaSuperiorDerecha(matrizMultiplosDe3);
@@ -98,12 +102,12 @@ public class LibreriaArreglos {
         int[][] matrizDiagonal;
         matrizDiagonal = objeto1.leerMatriz();
         JOptionPane.showMessageDialog(null, objeto1.mostrarMatriz(matrizDiagonal));
-        objeto1.obtenerSumaDiagonalMatrizCuadrada(matrizDiagonal);*/
+        objeto1.obtenerSumaDiagonalMatrizCuadrada(matrizDiagonal);
 
         //Ordenando un arreglo de tipo ENTERO CON METODO BURBUJA
         objeto1.ordenamientoMetodoBurbuja();
 
-        /*//Ordenando un arreglo de 2 dimensiones de MENOR A MAYOR UTILIZANDO METODO DE LA BURBUJA
+        //Ordenando un arreglo de 2 dimensiones de MENOR A MAYOR UTILIZANDO METODO DE LA BURBUJA
         int[][] arregloParaOrdenar;
         arregloParaOrdenar = objeto1.leerMatriz();
         JOptionPane.showMessageDialog(null, objeto1.mostrarMatriz(arregloParaOrdenar));
@@ -129,12 +133,13 @@ public class LibreriaArreglos {
         JOptionPane.showMessageDialog(null, objeto1.mostrarMatriz(matrizParaLlenarConRandom));
 
         //Matriz del cuadrado magico
-        /*int[][] matrizParaCuadrado;
+        int[][] matrizParaCuadrado;
         matrizParaCuadrado = objeto1.asignarDimensionesAArreglo();
         objeto1.rellenarCuadroMagico(matrizParaCuadrado);*/
     }
-    
+
 }
+
 class Matrices {
 
     //Asignar dimensiones a un arreglo
@@ -166,7 +171,7 @@ class Matrices {
         }
         return (unArreglo);
     }
-    
+
     //Metodo para llenar matrices con valores random de tipo entero con rango n a n
     int[][] leerMatrizYLlenarRandom() {
         int filas, columnas;
@@ -180,7 +185,7 @@ class Matrices {
         //Llenando con datos
         for (int filaParaLlenar = 0; filaParaLlenar < unArreglo.length; filaParaLlenar++) {
             for (int columnaParaLlenar = 0; columnaParaLlenar < unArreglo[0].length; columnaParaLlenar++) {
-                unArreglo[filaParaLlenar][columnaParaLlenar] = (int) (Math.random() * (10+1) + (0)); //Math.random() * (valor maximo + 1) + (valor minimo)
+                unArreglo[filaParaLlenar][columnaParaLlenar] = (int) (Math.random() * (10 + 1) + (0)); //Math.random() * (valor maximo + 1) + (valor minimo)
             }
         }
         return (unArreglo);
@@ -229,20 +234,35 @@ class Matrices {
         }
 
     }
-    
+
+    //Metodo para sumar renglones y poner su valor en la ultima columna
+    String sumarYMostrarRenglones(int[][] matrizAEvaluar) {
+        String aux = "Contenido de la matriz y sumatoria en la ultima columna:\n";
+        int suma = 0;
+        for (int renglon = 0; renglon < matrizAEvaluar.length; renglon++) {
+            for (int columna = 0; columna < matrizAEvaluar[renglon].length; columna++) {
+                suma = suma + matrizAEvaluar[renglon][columna];
+                aux = aux + " " + matrizAEvaluar[renglon][columna];
+            }           
+            aux = aux + "  Suma: " + suma + "\n";
+            suma = 0;
+        }
+
+        return (aux);
+    }
+
     //Metodo para multiplicar matrices
-    void multiplicarMatriz(int [][] PrimerMatriz, int [][] SegundaMatriz, int [][] matrizResultante){
+    void multiplicarMatriz(int[][] PrimerMatriz, int[][] SegundaMatriz, int[][] matrizResultante) {
         /*Criterios para la multiplicacion de matrices:
             1. Dadas 2 matrices para multiplicar, se va a obtener una nueva matriz resultante
             2. Las FILAS DE LA SEGUNDA matriz debe ser del MISMO ORDEN DE LA COLUMNA DE LA PRIMERA, si no se cumple este requisito, no se puede realizar la operacion
             3. Las FILAS DE LA MATRIZ RESULTANTE debe tener el MISMO ORDEN DE FILAS de la PRIMER MATRIZ
             4. Las COLUMNAS DE LA MATRIZ RESULTANTE debe tener el MISMO ORDEN DE COLUMNAS DE LA SEGUNDA MATRIZ
-        */
-        if (PrimerMatriz[0].length==SegundaMatriz.length){
-            
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Las operaciones no pueden realizarse, la primer matriz tiene "+PrimerMatriz[0].length+" columnas, y la segunda matriz tiene "+SegundaMatriz.length+" filas, no son iguales unu");
+         */
+        if (PrimerMatriz[0].length == SegundaMatriz.length) {
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Las operaciones no pueden realizarse, la primer matriz tiene " + PrimerMatriz[0].length + " columnas, y la segunda matriz tiene " + SegundaMatriz.length + " filas, no son iguales unu");
         }
     }
 
@@ -474,4 +494,3 @@ class Matrices {
         
     }*/
 }
-

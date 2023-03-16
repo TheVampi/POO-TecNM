@@ -36,6 +36,11 @@ public class Practica2_2 {
         objeto1.restarMatriz(matriz1, matriz2, matriz4);
         JOptionPane.showMessageDialog(null, "RESTA DE LAS MATRICES\n"+objeto1.mostrarMatriz(matriz4));
         
+        //Calculando la suma de cada renglon y mostrandola al final de cada columna de cada renglon
+        int[][] matriz9;
+        matriz9 = objeto1.leerMatrizYLlenarRandom();
+        JOptionPane.showMessageDialog(null, objeto1.sumarYMostrarRenglones(matriz9));
+        
         //Ordenando un arreglo de 2 dimensiones de MENOR A MAYOR UTILIZANDO METODO DE LA BURBUJA
         int[][] arregloParaOrdenar;
         arregloParaOrdenar = objeto1.leerMatrizYLlenarRandom();
@@ -124,6 +129,22 @@ class Matrices{
             JOptionPane.showMessageDialog(null, "Las matrices no son del mismo orden, no se pueden hacer operaciones");
         }
 
+    }
+    
+    //Metodo para sumar renglones y poner su valor en la ultima columna
+    String sumarYMostrarRenglones(int[][] matrizAEvaluar) {
+        String aux = "Contenido de la matriz y sumatoria en la ultima columna:\n";
+        int suma = 0;
+        for (int renglon = 0; renglon < matrizAEvaluar.length; renglon++) {
+            for (int columna = 0; columna < matrizAEvaluar[renglon].length; columna++) {
+                suma = suma + matrizAEvaluar[renglon][columna];
+                aux = aux + " " + matrizAEvaluar[renglon][columna];
+            }           
+            aux = aux + "  Suma: " + suma + "\n";
+            suma = 0;
+        }
+
+        return (aux);
     }
     
     //Ordenando un arreglo de 2 dimensiones de MENOR A MAYOR UTILIZANDO METODO DE LA BURBUJA
