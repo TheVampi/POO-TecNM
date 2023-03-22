@@ -1,73 +1,67 @@
-
 package practica2_2;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author luisi
- */
 public class Practica2_2 {
 
     public static void main(String[] args) {
         //AQUI VAMOS A PROBAR CADA FUNCION UWU
         Matrices objeto1 = new Matrices();
         JOptionPane.showMessageDialog(null, "Bienvenido a la calculadora de matrices, vamos a crear la primer matriz");
-        
-        
+
         //Creando y leyendo la primera matriz
         int[][] matriz1;
         matriz1 = objeto1.leerMatrizYLlenarRandom();
         JOptionPane.showMessageDialog(null, objeto1.mostrarMatriz(matriz1));
-        
+
         //Creando y leyendo la segunda matriz
         JOptionPane.showMessageDialog(null, "Ahora vamos a crear la segunda matriz");
         int[][] matriz2;
         matriz2 = objeto1.leerMatrizYLlenarRandom();
         JOptionPane.showMessageDialog(null, objeto1.mostrarMatriz(matriz2));
-        
+
         //Calculando la suma de la primera y la segunda
         int[][] matriz3 = new int[matriz1.length][matriz1[0].length];
         objeto1.sumarMatriz(matriz1, matriz2, matriz3);
-        JOptionPane.showMessageDialog(null, "SUMA DE LAS MATRICES\n"+objeto1.mostrarMatriz(matriz3));
-        
+        JOptionPane.showMessageDialog(null, "SUMA DE LAS MATRICES\n" + objeto1.mostrarMatriz(matriz3));
+
         //Calculando la RESTA de la PRIMERA menos la SEGUNDA
         int[][] matriz4 = new int[matriz1.length][matriz1[0].length];
         objeto1.restarMatriz(matriz1, matriz2, matriz4);
-        JOptionPane.showMessageDialog(null, "RESTA DE LAS MATRICES\n"+objeto1.mostrarMatriz(matriz4));
-        
+        JOptionPane.showMessageDialog(null, "RESTA DE LAS MATRICES\n" + objeto1.mostrarMatriz(matriz4));
+
         //Calculando la suma de cada renglon y mostrandola al final de cada columna de cada renglon
         int[][] matriz9;
         matriz9 = objeto1.leerMatrizYLlenarRandom();
         JOptionPane.showMessageDialog(null, objeto1.sumarYMostrarRenglones(matriz9));
-        
+
         //Ordenando un arreglo de 2 dimensiones de MENOR A MAYOR UTILIZANDO METODO DE LA BURBUJA
         int[][] arregloParaOrdenar;
         arregloParaOrdenar = objeto1.leerMatrizYLlenarRandom();
         //Mostrando el arreglo desordenado
-        JOptionPane.showMessageDialog(null, "Arreglo desordenado: "+objeto1.mostrarMatriz(arregloParaOrdenar));
+        JOptionPane.showMessageDialog(null, "Arreglo desordenado: " + objeto1.mostrarMatriz(arregloParaOrdenar));
         //Mostrando y ordenando el arreglo inicial
         objeto1.arregloDosDimensionesOrdenado(arregloParaOrdenar);
         JOptionPane.showMessageDialog(null, "Arreglo ordenado de menor a mayor: \n" + objeto1.mostrarMatriz(arregloParaOrdenar));
-        
+
         //Obteniendo una matriz transpuesta de dimensiones n*n
         int[][] arregloParaTransponer;
         arregloParaTransponer = objeto1.leerMatrizYLlenarRandom();
         JOptionPane.showMessageDialog(null, objeto1.mostrarMatriz(arregloParaTransponer));
         arregloParaTransponer = objeto1.obtenerMatrizTranspuesta(arregloParaTransponer);
         JOptionPane.showMessageDialog(null, "RESULTADO MATRIZ TRANSPUESTA:\n" + objeto1.mostrarMatriz(arregloParaTransponer));
-        
+
         //Sumando las diagonales normal e invertida una matriz cuadrada
         int[][] matrizDiagonal;
         matrizDiagonal = objeto1.leerMatrizYLlenarRandom();
         JOptionPane.showMessageDialog(null, objeto1.mostrarMatriz(matrizDiagonal));
         objeto1.obtenerSumaDiagonalMatrizCuadrada(matrizDiagonal);
     }
-    
+
 }
 
-class Matrices{
-    
+class Matrices {
+
     //Metodo para llenar matrices con valores random de tipo entero con rango n a n
     int[][] leerMatrizYLlenarRandom() {
         int filas, columnas;
@@ -81,12 +75,12 @@ class Matrices{
         //Llenando con datos
         for (int filaParaLlenar = 0; filaParaLlenar < unArreglo.length; filaParaLlenar++) {
             for (int columnaParaLlenar = 0; columnaParaLlenar < unArreglo[0].length; columnaParaLlenar++) {
-                unArreglo[filaParaLlenar][columnaParaLlenar] = (int) (Math.random() * (50+1) + (-20)); //Math.random() * (valor maximo + 1) + (valor minimo)
+                unArreglo[filaParaLlenar][columnaParaLlenar] = (int) (Math.random() * (50 + 1) + (-20)); //Math.random() * (valor maximo + 1) + (valor minimo)
             }
         }
         return (unArreglo);
     }
-    
+
     //Metodo para mostrar datos
     String mostrarMatriz(int[][] matrizParaMostrar) {
         String auxiliar = "CONTENIDO DE LA MATRIZ\n\n";
@@ -98,7 +92,7 @@ class Matrices{
         }
         return (auxiliar);
     }
-    
+
     //Metodo para sumar arreglos
     void sumarMatriz(int[][] matrizAEvaluar1, int[][] matrizAEvaluar2, int[][] matrizresultante) {
 
@@ -114,7 +108,7 @@ class Matrices{
         }
 
     }
-    
+
     //Metodo para restar arreglos
     void restarMatriz(int[][] matrizAEvaluar1, int[][] matrizAEvaluar2, int[][] matrizresultante) {
 
@@ -130,7 +124,7 @@ class Matrices{
         }
 
     }
-    
+
     //Metodo para sumar renglones y poner su valor en la ultima columna
     String sumarYMostrarRenglones(int[][] matrizAEvaluar) {
         String aux = "Contenido de la matriz y sumatoria en la ultima columna:\n";
@@ -139,14 +133,14 @@ class Matrices{
             for (int columna = 0; columna < matrizAEvaluar[renglon].length; columna++) {
                 suma = suma + matrizAEvaluar[renglon][columna];
                 aux = aux + " " + matrizAEvaluar[renglon][columna];
-            }           
+            }
             aux = aux + "  Suma: " + suma + "\n";
             suma = 0;
         }
 
         return (aux);
     }
-    
+
     //Ordenando un arreglo de 2 dimensiones de MENOR A MAYOR UTILIZANDO METODO DE LA BURBUJA
     void arregloDosDimensionesOrdenado(int[][] arregloParaOrdenar) {
         //Para ordenar un arreglo de dos dimensiones primero pasamos todos sus datos a un arreglo de una dimension para poder asi ordenarlos con el metodo de la burbuja
@@ -188,7 +182,7 @@ class Matrices{
         }
 
     }
-    
+
     //Metodo para obtener una matriz transpuesta (Los renglones pasan a columnas y las columnas a renglones)
     int[][] obtenerMatrizTranspuesta(int[][] matrizAConvertir) {
 
@@ -203,7 +197,7 @@ class Matrices{
         }
         return (matrizTranspuesta);
     }
-    
+
     //Metodo para sumar en diagonal normal y diagonal invertida una MATRIZ CUADRADA
     void obtenerSumaDiagonalMatrizCuadrada(int[][] matrizParaSacarDiagonal) {
         int sumatoriaDiagonalPrincipal = 0, sumatoriaDiagonalInvertida = 0;
@@ -224,5 +218,5 @@ class Matrices{
         }
 
     }
-    
+
 }

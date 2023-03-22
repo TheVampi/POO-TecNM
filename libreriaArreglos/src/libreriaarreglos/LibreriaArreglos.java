@@ -85,17 +85,23 @@ public class LibreriaArreglos {
         int[][] matriz5 = new int[matriz1.length][matriz1[0].length];
         objeto1.restarMatriz(matriz2, matriz1, matriz5);*/
 
-        //Calculando la suma de cada renglon y mostrandola al final de cada columna de cada renglon
+        /*//Calculando la suma de cada renglon y mostrandola al final de cada columna de cada renglon
         int[][] matriz9;
         matriz9 = objeto1.leerMatrizYLlenarRandom();
-        JOptionPane.showMessageDialog(null, objeto1.sumarYMostrarRenglones(matriz9));
+        JOptionPane.showMessageDialog(null, objeto1.sumarYMostrarRenglones(matriz9));*/
 
         /*//Creando una matriz para rellenar con multiplos de 3
         int[][] matrizMultiplosDe3;
         matrizMultiplosDe3 = objeto1.asignarDimensionesAArreglo();
-        matrizMultiplosDe3 = objeto1.llenarMatrizEsquinaSuperiorDerecha(matrizMultiplosDe3);
+        matrizMultiplosDe3 = objeto1.llenarMatrizEsquinaSuperiorDerecha(matrizMultiplosDe3);*/
+        
+        //Creando una matriz para rellenar con multiplos de 3
+        int[][] matrizMultiplosDe3V2;
+        matrizMultiplosDe3V2 = objeto1.asignarDimensionesAArreglo();
+        matrizMultiplosDe3V2 = objeto1.llenarMatrizEsquinaInferiorDerecha(matrizMultiplosDe3V2);
+        JOptionPane.showMessageDialog(null, objeto1.mostrarMatriz(matrizMultiplosDe3V2));
 
-        //Mostrando los resultados finales
+        /*//Mostrando los resultados finales
         JOptionPane.showMessageDialog(null, "Matriz 1\n" + objeto1.mostrarMatriz(matriz1) + "\n\nMatriz 2:\n" + objeto1.mostrarMatriz(matriz2) + "\n\nMatriz 1 + Matriz 2:\n" + objeto1.mostrarMatriz(matriz3) + "\n\nMatriz 1 - Matriz 2:\n" + objeto1.mostrarMatriz(matriz4) + "\n\nMatriz 2 - Matriz 1:\n" + objeto1.mostrarMatriz(matriz5) + "\n\nMatriz llenada con multiplos de 3:\n" + objeto1.mostrarMatriz(matrizMultiplosDe3));
 
         //Sumando las diagonales normal e invertida una matriz cuadrada
@@ -307,6 +313,31 @@ class Matrices {
         return (unArreglo);
     }
 
+    //Metodo para rellenar matrices con multiplos de 3 (EMPEZANDO ESQUINA INFERIOR DERECHA)en esta forma: ← ↓ → ↓ ← ...
+    int[][] llenarMatrizEsquinaInferiorDerecha(int[][] matrizAEvaluar) {
+        JOptionPane.showMessageDialog(null, "Vamos a rellenar una matriz con multiplos de 3");
+        int[][] unArreglo = new int[matrizAEvaluar.length][matrizAEvaluar[0].length];
+        int multiplo = 3;
+        boolean bandera = true;
+        for (int fila = (matrizAEvaluar.length-1); fila >= 0; fila--) {
+
+            if (bandera) {
+                for (int columna = matrizAEvaluar[fila].length-1 ; columna >=0 ; columna--) {
+                    unArreglo[fila][columna] = multiplo;
+                    multiplo = multiplo + 3;
+                }
+                bandera = false;
+            } else {
+                for (int columna = 0 ; columna <matrizAEvaluar[fila].length; columna++) {
+                    unArreglo[fila][columna] = multiplo;
+                    multiplo = multiplo + 3;
+
+                }
+                bandera = true;
+            }
+        }
+        return (unArreglo);
+    }
     //Metodo para sumar en diagonal normal y diagonal invertida una MATRIZ CUADRADA
     void obtenerSumaDiagonalMatrizCuadrada(int[][] matrizParaSacarDiagonal) {
         int sumatoriaDiagonalPrincipal = 0, sumatoriaDiagonalInvertida = 0;
