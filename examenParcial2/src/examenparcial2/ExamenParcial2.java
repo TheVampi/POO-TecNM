@@ -2,7 +2,6 @@ package examenparcial2;
 
 import javax.swing.JOptionPane;
 
-
 public class ExamenParcial2 {
 
     /**
@@ -15,13 +14,13 @@ public class ExamenParcial2 {
         matriz1 = ob1.crearMatrizCuadrada();
         ob1.llenarMatrizEspecial(matriz1);
         JOptionPane.showMessageDialog(null, ob1.mostrarMatriz(matriz1));
-        
+
         //Segunda matriz
         int[][] matriz2;
         matriz2 = ob1.crearMatrizCuadrada();
         ob1.llenarMatrizEspecial(matriz2);
         JOptionPane.showMessageDialog(null, ob1.mostrarMatriz(matriz2));
-        
+
         //Tercera matriz
         int[][] matriz3;
         matriz3 = ob1.crearMatrizCuadrada();
@@ -37,14 +36,19 @@ class Matrices {
 
     //Metodo para crear Matriz Cuadrada con condicion
     int[][] crearMatrizCuadrada() {
-        int n;
-        n = Integer.parseInt(JOptionPane.showInputDialog("Ingresa la dimensión del arreglo cuadrado:"));
-        //Evaluando la condicion
-        if (n >= 3 && (n % 2 != 0)) {
-            arr = new int[n][n];
-        } else {
-            JOptionPane.showMessageDialog(null, "INCORRECTO, la dimension debe ser un numero impar y mayor o igual a 3");
-        }
+        boolean var;
+        do {
+            var = false;
+            int n;
+            n = Integer.parseInt(JOptionPane.showInputDialog("Ingresa la dimensión del arreglo cuadrado:"));
+            //Evaluando la condicion
+            if (n >= 3 && (n % 2 != 0)) {
+                arr = new int[n][n];
+            } else {
+                JOptionPane.showMessageDialog(null, "INCORRECTO, la dimension debe ser un numero impar y mayor o igual a 3");
+                var = true;
+            }
+        } while (var);
         return (arr);
     }
 
