@@ -116,7 +116,7 @@ class Piloto extends PersonalVuelo {
     void capturar() {
         super.capturar();
         avionEnUso = JOptionPane.showInputDialog("Ingresa el avion a pilotar:");
-        horasVueloAcumuladas = Byte.parseByte(JOptionPane.showInputDialog("Ingresa las horas de vuelo acumuladas:"));
+        horasVueloAcumuladas = Integer.parseInt(JOptionPane.showInputDialog("Ingresa las horas de vuelo acumuladas:"));
     }
 
     String mostrar() {
