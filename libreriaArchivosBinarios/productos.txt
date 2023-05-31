@@ -1,0 +1,5 @@
+REPORTE DE INVENTARIOS
+ID  |Nombre del producto                     |Medida    |Precio  |Existencias|Existencias Mínimas
+AM02|Pina                                    |3 kg      |64.3|72.0|13.0
+B0CA|Platano                                 |5 Kg      |69.72|53.0|10.0
+XYA4|Manzana                                 |1Kg       |32.5|60.0|20.0

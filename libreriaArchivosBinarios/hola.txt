@@ -1,0 +1,4 @@
+REPORTE DE INVENTARIOS
+ID  |Nombre del producto                     |Medida    |Precio  |Existencias|Existencias Mínimas
+dsfs|sdf56                                   |45ds      |59.0|85.0|8.0
+548s|65ds65                                  |5s6d5     |58.0|47.0|85.0
