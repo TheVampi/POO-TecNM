@@ -1,0 +1,7 @@
+REPORTE DE INVENTARIOS
+ID  |Nombre del producto                     |Medida    |Precio|Existencias|Existencias Mínimas
+A380|Avion Airbus A380                       |aeronave  |84552.23|-1.00   |1.00    
+B0CA|Platano                                 |5 Kg      |69.72   |53.00   |10.00   
+B747|Avion Boeing 747-800                    |aeronave  |57785.23|3.00    |1.00    
+F22R|Avion Lockheed Martin F22 Raptor        |aeronave  |78000000.52|1.00    |3.00    
+XYA4|Manzana                                 |1Kg       |32.50   |23.00   |20.00   

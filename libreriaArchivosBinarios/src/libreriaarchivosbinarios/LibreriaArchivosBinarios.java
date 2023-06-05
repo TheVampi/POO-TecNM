@@ -21,17 +21,23 @@ public class LibreriaArchivosBinarios {
          */
         Productos ob1 = new Productos();
         Productos ob2 = new Productos();
+        Productos ob3 = new Productos();
 
         int longitudRegistro = 84;
         String ban, fichero;
         Boolean indi = true;
-        RandomAccessFile nya, aux, nyaLeer; //nya será el canal de comunicacion entre el programa y el fichero
+        int numClientes;
+        RandomAccessFile nya; //nya será el canal de comunicacion entre el programa y el fichero
         try {
-            fichero = JOptionPane.showInputDialog("Teclea el nombre del fichero");
+            String ID;
+            //fichero = JOptionPane.showInputDialog("Teclea el nombre del fichero de los productos");
+            fichero = "productos.dat";
             nya = new RandomAccessFile(fichero, "rw");
 
+            
+
             do {
-                int num = Integer.parseInt(JOptionPane.showInputDialog("Menu de opciones\n1.Crear archivo y escribir datos en el archivo\n2.Ordenar archivo"));
+                int num = Integer.parseInt(JOptionPane.showInputDialog("Menu de opciones\n1.Crear archivo y escribir datos en el archivo\n2.Ordenar archivo\n3.Buscar elemento\n4.Generar Reporte\n5.Cerrar y salir"));
                 switch (num) {
                     case 1: {
 
@@ -47,19 +53,28 @@ public class LibreriaArchivosBinarios {
                         indi = true;
                     }
                     break;
+                    case 3: {
+                        String IDbuscar = JOptionPane.showInputDialog("Escribe la palabra a buscar:");
+                        buscarElemento(nya, IDbuscar, ob3);
+
+                    }break;
+
                     case 4: {
 
                         reporte(nya);
                         indi = true;
-                    }break;
+                    }
+                    break;
                     case 5: {
                         nya.close();
                         System.exit(0);
                     }
+                    break;
 
                 }
             } while (indi);
-
+            nya.close();
+            reporte(nya);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, es el siguiente: " + ex);
         }
@@ -69,7 +84,7 @@ public class LibreriaArchivosBinarios {
     static void escribirInicial(Productos x, RandomAccessFile file) {
         String ban;
         try {
-            file.seek(0);
+            file.seek(file.length());
             do {
                 x.Capturar();
                 file.writeUTF(String.format("%-4s", x.clave));
@@ -148,40 +163,66 @@ public class LibreriaArchivosBinarios {
 
     static void reporte(RandomAccessFile file) {
         PrintWriter salida = null;
-        String aux="",name="",encabezado="";
+        String aux = "", name = "", encabezado = "";
         try {
-            name = JOptionPane.showInputDialog("Indica el nombre del archivo en extension .txt");
-            salida = new PrintWriter(new FileWriter(name),true);
-            encabezado = "REPORTE DE INVENTARIOS\n"+(String.format("%-4s|%-40s|%-10s|%-8s|%-8s|%-8s", "ID", "Nombre del producto", "Medida", "Precio", "Existencias", "Existencias Mínimas"));
+            name = "productos.txt";
+            salida = new PrintWriter(new FileWriter(name), true);
+            encabezado = "REPORTE DE INVENTARIOS\n" + (String.format("%-4s|%-40s|%-10s|%s|%s|%s", "ID", "Nombre del producto", "Medida", "Precio", "Existencias", "Existencias Mínimas"));
             salida.println(encabezado);
             for (int i = 0; i <= file.length() - 84; i++) {
                 file.seek(i * 84);
                 aux = (String.format("%-4s|%-40s|%-10s|%s|%s|%s", file.readUTF(), file.readUTF(), file.readUTF(), file.readDouble(), file.readDouble(), file.readDouble()));
                 salida.println(aux);
             }
-            
+
             System.out.println(aux);
-            
+
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error, es el siguiente: " + ex.toString());
         }
-        
+
     }
 
-}
+    static long buscarElemento(RandomAccessFile salida, String buscar, Productos Obj1) {
+        long LS, Li = 0, pm = 0;
+        try {
+            LS = (salida.length() / 84) - 1;
+            do {
+                pm = (Li + LS) / 2;
+                leer(Obj1, salida, (pm * 84));
+                if (Obj1.clave.compareTo(buscar) < 0) {
+                    Li = pm + 1;
+                } else {
+                    LS = pm - 1;
+                }
+            } while ((Li <= LS) && !buscar.equals(Obj1.clave));
+            if (buscar.equals(Obj1.clave)) {
+                JOptionPane.showMessageDialog(null, " Se encontro la clave " + buscar);
 
-class Productos {
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontro la clave " + buscar);
+                pm = -1;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, " Error al bucar el elemento." + e.toString());
+        }
+        return (pm);
 
-    //Declarando los datos para el fichero
-    String clave, producto, medida;
-    Double precio, existencias, existenciasMin;
+    }
 
-    void Capturar() {
-        clave = JOptionPane.showInputDialog("Ingresa la clave del producto (4 dígitos)");
-        producto = JOptionPane.showInputDialog("Ingresa el nombre del producto (maximo 40 caracteres)");
-        medida = JOptionPane.showInputDialog("Ingresa la unidad de medida del producto (maximo 10 caracteres)");
-        precio = Double.parseDouble(JOptionPane.showInputDialog("Ingresa el precio del producto"));
-        existencias = Double.parseDouble(JOptionPane.showInputDialog("Ingresa las existencias del producto"));
-        existenciasMin = Double.parseDouble(JOptionPane.showInputDialog("Ingresa las existencias mínimas del producto"));
+    static class Productos {
+
+        //Declarando los datos para el fichero
+        String clave, producto, medida;
+        Double precio, existencias, existenciasMin;
+
+        void Capturar() {
+            clave = JOptionPane.showInputDialog("Ingresa la clave del producto (4 dígitos)");
+            producto = JOptionPane.showInputDialog("Ingresa el nombre del producto (maximo 40 caracteres)");
+            medida = JOptionPane.showInputDialog("Ingresa la unidad de medida del producto (maximo 10 caracteres)");
+            precio = Double.parseDouble(JOptionPane.showInputDialog("Ingresa el precio del producto"));
+            existencias = Double.parseDouble(JOptionPane.showInputDialog("Ingresa las existencias del producto"));
+            existenciasMin = Double.parseDouble(JOptionPane.showInputDialog("Ingresa las existencias mínimas del producto"));
+        }
     }
 }
